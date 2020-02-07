@@ -10,6 +10,10 @@ sudo apt-get install \
 
 sudo systemctl start libvirtd
 
+
+sudo virsh destroy guest-centos8
+sudo virsh undefine guest-centos8
+sudo virsh vol-delete --pool default guest-centos8.qcow2
 sudo /usr/bin/virt-install \
    --name=guest-centos8 \
    --debug \
@@ -21,4 +25,5 @@ sudo /usr/bin/virt-install \
    --network default \
    --os-type=linux \
    --os-variant=rhel7 \
-   --nographic 
+   --nographic \
+   --noautoconsole
