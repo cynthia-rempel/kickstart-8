@@ -20,6 +20,7 @@ sudo /usr/bin/virt-install \
    --disk size=10 \
    --extra-args='console=ttyS0' \
    --extra-args='ks=https://github.com/cynthia-rempel/kickstart-8/raw/master/kickstart.cfg' \
+   --extra-args='inst.debug' \
    --location=https://mirrors.oit.uci.edu/centos/8.1.1911/BaseOS/x86_64/os/ \
    --memory 2048 \
    --network default \
