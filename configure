@@ -3,6 +3,8 @@
 sudo apt-get update -y
 
 sudo apt-get install \
+  createrepo \
+  genisoimage \
   libvirt-bin \
   python-pykickstart \
   virtinst \
@@ -17,7 +19,7 @@ sudo virsh vol-delete --pool default guest-centos8.qcow2
 sudo /usr/bin/virt-install \
    --name=guest-centos8 \
    --debug \
-   --disk size=10 \
+   --disk size=10,bus=scsi \
    --extra-args='console=ttyS0' \
    --extra-args='ks=https://github.com/cynthia-rempel/kickstart-8/raw/master/kickstart.cfg' \
    --extra-args='inst.debug' \
@@ -28,3 +30,7 @@ sudo /usr/bin/virt-install \
    --os-variant=rhel7 \
    --nographic \
    --noautoconsole
+
+sudo virsh console guest-centos8
+# Reference:
+#    https://www.golinuxhub.com/2017/05/how-to-create-customized-bootable-boot.html
